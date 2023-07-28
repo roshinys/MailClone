@@ -28,6 +28,8 @@ function AuthForm(props) {
     e.preventDefault();
     if (formValid) {
       props.onSubmit(email, password);
+      setEmail("");
+      setPassword("");
     }
   };
 
@@ -40,7 +42,7 @@ function AuthForm(props) {
           placeholder="Enter email"
           value={email}
           onChange={emailChangeHandler}
-          required
+          //   required
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -50,7 +52,6 @@ function AuthForm(props) {
           placeholder="Password"
           value={password}
           required
-          min={6}
           onChange={passwordChangeHandler}
         />
       </Form.Group>

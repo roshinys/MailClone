@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import Login from "./Components/Auth/Login/Login";
 import Register from "./Components/Auth/Register/Register";
+import AlertNotification from "./UI/AlertNotification/AlertNotification";
 
 const router = createBrowserRouter([
   {
@@ -19,10 +20,19 @@ const router = createBrowserRouter([
     path: "/register",
     element: <Register />,
   },
+  {
+    path: "/mail",
+    element: <p>welcome to mail</p>,
+  },
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <AlertNotification />
+    </>
+  );
 }
 
 export default App;
