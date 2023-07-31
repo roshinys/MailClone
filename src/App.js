@@ -1,16 +1,19 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Navigate,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./Components/Auth/Login/Login";
 import Register from "./Components/Auth/Register/Register";
 import AlertNotification from "./UI/AlertNotification/AlertNotification";
+import RootLayout from "./RootLayout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to="/login" />,
+    element: <RootLayout />,
+    children: [
+      {
+        path: "/mail",
+        element: <p>mail</p>,
+      },
+    ],
   },
   {
     path: "/login",
@@ -19,10 +22,6 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
-  },
-  {
-    path: "/mail",
-    element: <p>welcome to mail</p>,
   },
 ]);
 

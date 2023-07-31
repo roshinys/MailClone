@@ -2,7 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: { token: null, userDetails: {} },
+  initialState: {
+    token: localStorage.getItem("token") ? localStorage.getItem("token") : null,
+    userDetails: localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user"))
+      : {},
+  },
   reducers: {
     setUserDetails(state, action) {
       state.userDetails = action.payload.userDetails;
