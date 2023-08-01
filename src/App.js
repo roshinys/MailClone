@@ -5,6 +5,7 @@ import AlertNotification from "./UI/AlertNotification/AlertNotification";
 import RootLayout from "./RootLayout";
 import Mail from "./Components/Mail/Mail";
 import MailList from "./Components/Mail/MailList";
+import SendMail from "./Components/Mail/SendMail";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,7 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
+      <SendMail />
       <AlertNotification />
     </>
   );
