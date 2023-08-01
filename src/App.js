@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   createBrowserRouter,
   Navigate,
@@ -11,7 +12,8 @@ import Mail from "./Components/Mail/Mail";
 import MailList from "./Components/Mail/MailList";
 import SendMail from "./Components/Mail/SendMail";
 import InboxMail from "./Components/Mail/InboxMail";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getInboxMailAction } from "./store/mail-action";
 
 const router = createBrowserRouter([
   {
@@ -47,10 +49,17 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const token = useSelector((state) => state.auth.token);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (token) {
+      dispatch(getInboxMailAction());
+    }
+  }, [dispatch, token]);
+
   const sendMessageIsOpen = useSelector(
     (state) => state.mail.sendMessageIsOpen
   );
-  const token = useSelector((state) => state.auth.token);
   return (
     <>
       <RouterProvider router={router} />

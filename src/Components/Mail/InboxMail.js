@@ -1,15 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import MailRow from "./MailRow";
 import "./MailList.css";
-import { useDispatch, useSelector } from "react-redux";
-import { getInboxMailAction } from "../../store/mail-action";
+import { useSelector } from "react-redux";
 
 function InboxMail() {
-  const dispatch = useDispatch();
   const inboxMails = useSelector((state) => state.mail.inboxMails);
-  useEffect(() => {
-    dispatch(getInboxMailAction());
-  }, [dispatch]);
 
   return (
     <div className="mailList__List">

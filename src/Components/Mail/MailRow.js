@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./MailRow.css";
 import { Checkbox, IconButton } from "@mui/material";
 import {
@@ -7,14 +7,11 @@ import {
   FiberManualRecord,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
-import { updateIsReadAction } from "../../store/mail-action";
 
 function MailRow({ id, isRead, title, subject, description, time }) {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const mailClickHandler = () => {
-    dispatch(updateIsReadAction(id, navigate));
+    navigate(`/mail/${id}`);
   };
   return (
     <div className="mailRow" onClick={mailClickHandler}>

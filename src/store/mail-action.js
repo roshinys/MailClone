@@ -53,7 +53,7 @@ export const getInboxMailAction = () => {
   };
 };
 
-export const updateIsReadAction = (id, navigate) => {
+export const updateIsReadAction = (id) => {
   return async (dispatch) => {
     try {
       const response = await api.updateIsRead(id);
@@ -61,8 +61,29 @@ export const updateIsReadAction = (id, navigate) => {
         throw new Error(response?.exception?.response?.data?.message);
       } else {
         dispatch(mailActions.updateIsRead({ id }));
-        navigate(`/mail/${id}`);
       }
+    } catch (err) {
+      dispatch(
+        alertActions.setAlert({
+          content: err && err.message ? err.message : "Something went wrong",
+        })
+      );
+    }
+  };
+};
+
+export const getMailByIdAction = (mailId) => {
+  return async (dispatch) => {
+    try {
+      const response = await api.getMailById(mailId);
+      if (response.error) {
+        throw new Error(response?.exception?.response?.data?.message);
+      }
+      const mail = response?.data?.mail;
+      if (!mail) {
+        throw new Error();
+      }
+      return mail;
     } catch (err) {
       dispatch(
         alertActions.setAlert({

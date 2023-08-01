@@ -13,12 +13,38 @@ import {
   WatchLater,
 } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { useParams } from "react-router-dom";
 import "./Mail.css";
+import { useDispatch, useSelector } from "react-redux";
+import { alertActions } from "../../store/alert-slice";
+import { updateIsReadAction } from "../../store/mail-action";
 
 function Mail() {
   const navigate = useNavigate();
+  const [mail, setMail] = useState({});
+  const { mailId } = useParams();
+  const dispatch = useDispatch();
+  const inboxMails = useSelector((state) => state.mail.inboxMails);
+
+  useEffect(() => {
+    const result = inboxMails.filter((mail) => {
+      return mail._id === mailId;
+    });
+    if (result.length === 0) {
+      dispatch(alertActions.setAlert({ content: "Failed To Fetch Mail" }));
+    } else {
+      setMail(result[0]);
+    }
+  }, [mailId, inboxMails, dispatch]);
+
+  useEffect(() => {
+    if (mail && !mail.isRead) {
+      dispatch(updateIsReadAction(mailId));
+    }
+  }, [mail, mailId, dispatch]);
+
   return (
     <div className="mail">
       <div className="mail__tools">
@@ -65,13 +91,12 @@ function Mail() {
       </div>
       <div className="mail__body">
         <div className="mail__bodyHeader">
-          <h2>Subject</h2>
+          <h2>{mail.subject}</h2>
           <LabelImportant className="mail__important" />
-          <p>Title</p>
-          <p className="mail__time">10pm</p>
+          <p className="mail__time">{mail.createdAt}</p>
         </div>
         <div className="mail__message">
-          <p>This is a Message</p>
+          <p>{mail.body}</p>
         </div>
       </div>
     </div>

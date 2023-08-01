@@ -29,10 +29,13 @@ const mailSlice = createSlice({
     },
     updateIsRead: (state, action) => {
       const mailId = action.payload.id;
-      console.log(mailId);
-      state.inboxMails = state.inboxMails.map((mail) =>
-        mail.id === mailId ? { ...mail, isRead: true } : mail
-      );
+      state.inboxMails = state.inboxMails.map((mail) => {
+        if (mail._id === mailId) {
+          return { ...mail, isRead: true };
+        } else {
+          return mail;
+        }
+      });
     },
   },
 });

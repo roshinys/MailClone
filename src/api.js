@@ -72,3 +72,14 @@ export const updateIsRead = async (id) => {
     };
   }
 };
+
+export const getMailById = async (mailId) => {
+  try {
+    return await apiClient.get(`/mail/${mailId}`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
