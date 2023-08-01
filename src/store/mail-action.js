@@ -29,3 +29,26 @@ export const createMailAction = (mail) => {
     }
   };
 };
+
+export const getInboxMailAction = () => {
+  return async (dispatch) => {
+    try {
+      const response = await api.getInboxMail();
+      if (response.error) {
+        throw new Error(response?.exception?.response?.data?.message);
+      } else {
+        const inboxMails = response?.data?.inboxMails;
+        if (!inboxMails) {
+          throw new Error("Something went wrong");
+        }
+        dispatch(mailActions.getInboxMail({ inboxMails }));
+      }
+    } catch (err) {
+      dispatch(
+        alertActions.setAlert({
+          content: err && err.message ? err.message : "Something went wrong",
+        })
+      );
+    }
+  };
+};

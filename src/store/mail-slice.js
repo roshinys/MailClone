@@ -4,7 +4,7 @@ const mailSlice = createSlice({
   name: "mail",
   initialState: {
     sendMessageIsOpen: false,
-    receivedMails: [],
+    inboxMails: [],
     sentMails: [],
   },
   reducers: {
@@ -16,6 +16,9 @@ const mailSlice = createSlice({
     },
     addMail: (state, action) => {
       state.sentMails.push(action.payload.mail);
+    },
+    getInboxMail: (state, action) => {
+      state.inboxMails = action.payload.inboxMails;
     },
   },
 });

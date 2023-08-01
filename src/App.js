@@ -10,6 +10,7 @@ import RootLayout from "./RootLayout";
 import Mail from "./Components/Mail/Mail";
 import MailList from "./Components/Mail/MailList";
 import SendMail from "./Components/Mail/SendMail";
+import InboxMail from "./Components/Mail/InboxMail";
 import { useSelector } from "react-redux";
 
 const router = createBrowserRouter([
@@ -23,10 +24,14 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/mail",
-        element: <MailList />,
+        element: (
+          <MailList>
+            <InboxMail />
+          </MailList>
+        ),
       },
       {
-        path: "/mail/id",
+        path: "/mail/:mailId",
         element: <Mail />,
       },
     ],

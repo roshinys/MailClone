@@ -13,10 +13,9 @@ import {
   LocalOffer,
 } from "@mui/icons-material";
 import { IconButton, Checkbox } from "@mui/material";
-import MailRow from "./MailRow";
 import MailSection from "../Layout/MailSection/MailSection";
 
-function MailList() {
+function MailList(props) {
   return (
     <div className="mailList">
       <div className="mailList__settings">
@@ -52,20 +51,7 @@ function MailList() {
         <MailSection Icon={People} title="Social" />
         <MailSection Icon={LocalOffer} title="Promotions" />
       </div>
-      <div className="mailList__List">
-        <MailRow
-          title="Twitch"
-          subject="Hey Fellow Streamer"
-          description="This is a test"
-          time="10pm"
-        />
-        <MailRow
-          title="Twitch"
-          subject="Hey Fellow Streamer"
-          description="This is a test"
-          time="10pm"
-        />
-      </div>
+      {props.children}
     </div>
   );
 }

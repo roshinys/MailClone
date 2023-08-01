@@ -50,3 +50,14 @@ export const createMail = async (data) => {
     };
   }
 };
+
+export const getInboxMail = async () => {
+  try {
+    return await apiClient.get("/mail/inbox");
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
