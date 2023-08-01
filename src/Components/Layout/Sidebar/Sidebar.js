@@ -13,13 +13,19 @@ import PersonIcon from "@mui/icons-material/Person";
 import PhoneIcon from "@mui/icons-material/Phone";
 import SideBarOption from "./SidebarOption";
 import "./Sidebar.css";
+import { useDispatch } from "react-redux";
+import { openSendMessage } from "../../../store/mail-slice";
 
 function SideBar() {
+  const dispatch = useDispatch();
   return (
     <div className="sidebar">
       <Button
         startIcon={<AddIcon fontSize="large" />}
         className="sidebar__compose"
+        onClick={() => {
+          dispatch(openSendMessage());
+        }}
       >
         Compose
       </Button>

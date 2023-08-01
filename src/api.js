@@ -39,3 +39,14 @@ export const register = async (data) => {
     };
   }
 };
+
+export const createMail = async (data) => {
+  try {
+    return await apiClient.post("/mail", data);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};

@@ -13,7 +13,7 @@ function MailRow({ id, title, subject, description, time }) {
     <div
       className="mailRow"
       onClick={() => {
-        navigate("/mail");
+        navigate("/mail/id");
       }}
     >
       <div className="mailRow_optionTitle">

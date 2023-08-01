@@ -34,6 +34,7 @@
 
 .sendMail__close {
   cursor: pointer;
+  color: white;
 }
 
 .sendMail > form {

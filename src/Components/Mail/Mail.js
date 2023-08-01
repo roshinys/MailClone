@@ -23,7 +23,7 @@ function Mail() {
     <div className="mail">
       <div className="mail__tools">
         <div className="mail__toolsLeft">
-          <IconButton onClick={() => navigate("/")}>
+          <IconButton onClick={() => navigate("/mail")}>
             <ArrowBack />
           </IconButton>
           <IconButton>

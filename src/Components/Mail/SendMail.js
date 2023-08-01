@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { closeSendMessage } from "../../store/mail-slice";
 import JoditEditor from "jodit-react";
 import { alertActions } from "../../store/alert-slice";
+import { createMailAction } from "../../store/mail-action";
 
 function SendMail() {
   const editor = useRef(null);
@@ -29,7 +30,7 @@ function SendMail() {
     } else if (subject.length === 0) {
       dispatch(alertActions.setAlert({ content: "Subject Cannot be empty" }));
     } else {
-      //   dispatch message to backend
+      dispatch(createMailAction({ to, message, subject }));
     }
   };
 
