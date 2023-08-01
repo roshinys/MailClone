@@ -50,3 +50,12 @@
   font-weight: 400;
   color: gray;
 }
+
+.mailRow__options {
+  display: flex;
+  align-items: center;
+}
+
+.mailRow__readProperty {
+  color: yellow;
+}

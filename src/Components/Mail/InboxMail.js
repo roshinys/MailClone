@@ -22,6 +22,7 @@ function InboxMail() {
             subject={mail.subject}
             description={mail.body}
             time={mail.createdAt}
+            isRead={mail.isRead}
           />
         );
       })}

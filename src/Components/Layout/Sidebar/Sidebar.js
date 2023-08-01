@@ -13,11 +13,12 @@ import PersonIcon from "@mui/icons-material/Person";
 import PhoneIcon from "@mui/icons-material/Phone";
 import SideBarOption from "./SidebarOption";
 import "./Sidebar.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openSendMessage } from "../../../store/mail-slice";
 
 function SideBar() {
   const dispatch = useDispatch();
+  const inboxUnread = useSelector((state) => state.mail.unreadInboxMail);
   return (
     <div className="sidebar">
       <Button
@@ -32,15 +33,23 @@ function SideBar() {
       <SideBarOption
         Icon={InboxIcon}
         title="Inbox"
-        number={54}
+        number={inboxUnread}
         selected={true}
       />
-      <SideBarOption Icon={StarIcon} title="Starred" number={54} />
-      <SideBarOption Icon={AccessTimeIcon} title="Snoozed" number={54} />
-      <SideBarOption Icon={LabelImportantIcon} title="Important" number={54} />
-      <SideBarOption Icon={NearMeIcon} title="Sent" number={54} />
-      <SideBarOption Icon={NoteIcon} title="Drafts" number={54} />
-      <SideBarOption Icon={ExpandMoreIcon} title="More" number={54} />
+      <SideBarOption Icon={StarIcon} title="Starred" number={inboxUnread} />
+      <SideBarOption
+        Icon={AccessTimeIcon}
+        title="Snoozed"
+        number={inboxUnread}
+      />
+      <SideBarOption
+        Icon={LabelImportantIcon}
+        title="Important"
+        number={inboxUnread}
+      />
+      <SideBarOption Icon={NearMeIcon} title="Sent" number={inboxUnread} />
+      <SideBarOption Icon={NoteIcon} title="Drafts" number={inboxUnread} />
+      <SideBarOption Icon={ExpandMoreIcon} title="More" number={inboxUnread} />
       <div className="sidebar__footer">
         <div className="sidebar__footerIcons">
           <IconButton>

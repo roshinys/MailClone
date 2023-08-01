@@ -6,6 +6,7 @@ const mailSlice = createSlice({
     sendMessageIsOpen: false,
     inboxMails: [],
     sentMails: [],
+    unreadInboxMail: 0,
   },
   reducers: {
     openSendMessage: (state) => {
@@ -19,6 +20,19 @@ const mailSlice = createSlice({
     },
     getInboxMail: (state, action) => {
       state.inboxMails = action.payload.inboxMails;
+      state.unreadInboxMail = action.payload.inboxMails.reduce(
+        (count, mail) => {
+          return count + (mail.isRead === false ? 1 : 0);
+        },
+        0
+      );
+    },
+    updateIsRead: (state, action) => {
+      const mailId = action.payload.id;
+      console.log(mailId);
+      state.inboxMails = state.inboxMails.map((mail) =>
+        mail.id === mailId ? { ...mail, isRead: true } : mail
+      );
     },
   },
 });

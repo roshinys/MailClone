@@ -61,3 +61,14 @@ export const getInboxMail = async () => {
     };
   }
 };
+
+export const updateIsRead = async (id) => {
+  try {
+    return await apiClient.put(`/mail/${id}`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};

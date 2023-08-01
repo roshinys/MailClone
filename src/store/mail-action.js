@@ -52,3 +52,23 @@ export const getInboxMailAction = () => {
     }
   };
 };
+
+export const updateIsReadAction = (id, navigate) => {
+  return async (dispatch) => {
+    try {
+      const response = await api.updateIsRead(id);
+      if (response.error) {
+        throw new Error(response?.exception?.response?.data?.message);
+      } else {
+        dispatch(mailActions.updateIsRead({ id }));
+        navigate(`/mail/${id}`);
+      }
+    } catch (err) {
+      dispatch(
+        alertActions.setAlert({
+          content: err && err.message ? err.message : "Something went wrong",
+        })
+      );
+    }
+  };
+};
