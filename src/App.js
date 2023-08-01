@@ -3,6 +3,8 @@ import Login from "./Components/Auth/Login/Login";
 import Register from "./Components/Auth/Register/Register";
 import AlertNotification from "./UI/AlertNotification/AlertNotification";
 import RootLayout from "./RootLayout";
+import Mail from "./Components/Mail/Mail";
+import MailList from "./Components/Mail/MailList";
 
 const router = createBrowserRouter([
   {
@@ -10,8 +12,12 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       {
+        path: "/",
+        element: <MailList />,
+      },
+      {
         path: "/mail",
-        element: <p>mail</p>,
+        element: <Mail />,
       },
     ],
   },

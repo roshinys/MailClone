@@ -1,14 +1,17 @@
 import React from "react";
 import Header from "./Components/Layout/Header/Header";
-import Sidebar from "./Components/Layout/Sidebar/Sidebar";
-import { Outlet } from "react-router-dom";
+import SideBar from "./Components/Layout/Sidebar/Sidebar";
+import { Outlet } from "react-router";
+import "./App.css";
 
 function RootLayout() {
   return (
-    <div>
+    <div className="app">
       <Header />
-      <Sidebar />
-      <Outlet />
+      <div className="app__body">
+        <SideBar />
+        <Outlet />
+      </div>
     </div>
   );
 }
