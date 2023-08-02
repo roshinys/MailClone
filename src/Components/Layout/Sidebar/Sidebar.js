@@ -18,11 +18,12 @@ import { openSendMessage } from "../../../store/mail-slice";
 
 function SideBar() {
   const [selected, setSelected] = useState({
-    inbox: true,
+    inbox: false,
     sent: false,
   });
   const dispatch = useDispatch();
   const inboxUnread = useSelector((state) => state.mail.unreadInboxMail);
+  const countSentMail = useSelector((state) => state.mail.countSentMail);
 
   const selectChangeHandler = (value) => {
     if (value === "inbox") {
@@ -51,21 +52,28 @@ function SideBar() {
         redirectTo="/mail"
         onSelectChange={selectChangeHandler}
       />
-      <SideBarOption Icon={StarIcon} title="Starred" number={inboxUnread} />
+      <SideBarOption
+        Icon={StarIcon}
+        title="Starred"
+        number={inboxUnread}
+        onSelectChange={() => {}}
+      />
       <SideBarOption
         Icon={AccessTimeIcon}
         title="Snoozed"
         number={inboxUnread}
+        onSelectChange={() => {}}
       />
       <SideBarOption
         Icon={LabelImportantIcon}
         title="Important"
         number={inboxUnread}
+        onSelectChange={() => {}}
       />
       <SideBarOption
         Icon={NearMeIcon}
         title="Sent"
-        number={inboxUnread}
+        number={countSentMail}
         selected={selected.sent}
         onSelectChange={selectChangeHandler}
         redirectTo="/mail/sent"
@@ -76,7 +84,12 @@ function SideBar() {
         number={inboxUnread}
         onSelectChange={() => {}}
       />
-      <SideBarOption Icon={ExpandMoreIcon} title="More" number={inboxUnread} />
+      <SideBarOption
+        Icon={ExpandMoreIcon}
+        title="More"
+        number={inboxUnread}
+        onSelectChange={() => {}}
+      />
       <div className="sidebar__footer">
         <div className="sidebar__footerIcons">
           <IconButton>

@@ -127,9 +127,10 @@ export const deleteMailByIdAction = (mailId, received) => {
       if (received) {
         dispatch(mailActions.delReceiverById({ id: mailId }));
         return;
+      } else {
+        dispatch(mailActions.delSenderById({ id: mailId }));
+        return;
       }
-      //dispatch sender end action
-      return;
     } catch (err) {
       dispatch(
         alertActions.setAlert({
