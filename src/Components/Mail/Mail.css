@@ -40,16 +40,6 @@
   margin-right: 20px;
 }
 
-.mail__message > p {
-  margin-left: 20px;
-}
-
-.mail__message > p {
-  padding: 10px;
-  margin-right: 20px;
-  overflow-wrap: break-word;
-}
-
 .mail__time {
   position: absolute;
   top: 24px;

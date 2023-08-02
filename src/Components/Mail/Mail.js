@@ -19,6 +19,7 @@ import { useParams } from "react-router-dom";
 import "./Mail.css";
 import { useDispatch, useSelector } from "react-redux";
 import { updateIsReadAction } from "../../store/mail-action";
+import HTMLReactParser from "html-react-parser";
 
 function Mail() {
   const navigate = useNavigate();
@@ -92,9 +93,9 @@ function Mail() {
           <LabelImportant className="mail__important" />
           <p className="mail__time">{mail.createdAt}</p>
         </div>
-        <div className="mail__message">
-          <p>{mail.body}</p>
-        </div>
+        {mail.body && (
+          <div className="mail__message">{HTMLReactParser(mail.body)}</div>
+        )}
       </div>
     </div>
   );

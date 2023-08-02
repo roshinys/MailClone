@@ -24,7 +24,7 @@
   display: flex;
   align-items: center;
   flex: 1;
-  margin: none;
+  margin: 0;
   margin-left: 10px;
   font-size: 14px;
   font-weight: 400;
@@ -33,7 +33,7 @@
 .sidebarOption > p {
   display: none;
   font-weight: 300;
-  margin: none;
+  margin: 0;
 }
 
 .sidebarOption > .MuiSvgIcon-root {

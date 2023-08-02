@@ -7,8 +7,9 @@ import {
   FiberManualRecord,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router";
+import HTMLReactParser from "html-react-parser";
 
-function MailRow({ id, isRead, title, subject, description, time }) {
+function MailRow({ id, isRead, title, description, time }) {
   const navigate = useNavigate();
   const mailClickHandler = () => {
     navigate(`/mail/${id}`);
@@ -30,8 +31,9 @@ function MailRow({ id, isRead, title, subject, description, time }) {
       </div>
       <div className="mailRow__message">
         <h4>
-          {" - "}
-          <span className="mailRow__description">{description}</span>
+          <span className="mailRow__description">
+            {description && HTMLReactParser(description.slice(0, 10) + "...")}
+          </span>
         </h4>
       </div>
       <p className="mailRow__time">{time}</p>
