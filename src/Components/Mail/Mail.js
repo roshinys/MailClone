@@ -18,7 +18,6 @@ import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom";
 import "./Mail.css";
 import { useDispatch, useSelector } from "react-redux";
-import { alertActions } from "../../store/alert-slice";
 import { updateIsReadAction } from "../../store/mail-action";
 
 function Mail() {
@@ -32,9 +31,7 @@ function Mail() {
     const result = inboxMails.filter((mail) => {
       return mail._id === mailId;
     });
-    if (result.length === 0) {
-      dispatch(alertActions.setAlert({ content: "Failed To Fetch Mail" }));
-    } else {
+    if (result.length !== 0) {
       setMail(result[0]);
     }
   }, [mailId, inboxMails, dispatch]);
