@@ -61,10 +61,15 @@ function App() {
   const token = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (token) {
-      dispatch(getInboxMailAction());
-      dispatch(getsentMailAction());
-    }
+    const intervalId = setInterval(() => {
+      if (token) {
+        dispatch(getInboxMailAction());
+        dispatch(getsentMailAction());
+      }
+    }, 2000);
+    return () => {
+      clearInterval(intervalId);
+    };
   }, [dispatch, token]);
 
   const sendMessageIsOpen = useSelector(
