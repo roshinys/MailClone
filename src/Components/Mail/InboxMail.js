@@ -18,6 +18,7 @@ function InboxMail() {
             description={mail.body}
             time={mail.createdAt}
             isRead={mail.isRead}
+            isReceived={true}
           />
         );
       })}

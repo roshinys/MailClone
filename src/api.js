@@ -83,3 +83,14 @@ export const getMailById = async (mailId) => {
     };
   }
 };
+
+export const deleteMailById = async (mailId) => {
+  try {
+    return await apiClient.delete(`/mail/${mailId}`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};

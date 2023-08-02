@@ -37,6 +37,12 @@ const mailSlice = createSlice({
         }
       });
     },
+    delReceiverById: (state, action) => {
+      const mailId = action.payload.id;
+      state.inboxMails = state.inboxMails.filter((mail) => {
+        return mailId !== mail._id;
+      });
+    },
   },
 });
 

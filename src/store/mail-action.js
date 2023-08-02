@@ -93,3 +93,26 @@ export const getMailByIdAction = (mailId) => {
     }
   };
 };
+
+export const deleteMailByIdAction = (mailId, received) => {
+  return async (dispatch) => {
+    try {
+      const response = await api.deleteMailById(mailId);
+      if (response.error) {
+        throw new Error(response?.exception?.response?.data?.message);
+      }
+      if (received) {
+        dispatch(mailActions.delReceiverById({ id: mailId }));
+        return;
+      }
+      //dispatch sender end action
+      return;
+    } catch (err) {
+      dispatch(
+        alertActions.setAlert({
+          content: err && err.message ? err.message : "Something went wrong",
+        })
+      );
+    }
+  };
+};
