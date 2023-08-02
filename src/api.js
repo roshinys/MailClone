@@ -62,6 +62,17 @@ export const getInboxMail = async () => {
   }
 };
 
+export const getSentMail = async () => {
+  try {
+    return await apiClient.get("/mail/sent");
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
 export const updateIsRead = async (id) => {
   try {
     return await apiClient.put(`/mail/${id}`);

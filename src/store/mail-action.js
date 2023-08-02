@@ -53,6 +53,29 @@ export const getInboxMailAction = () => {
   };
 };
 
+export const getsentMailAction = () => {
+  return async (dispatch) => {
+    try {
+      const response = await api.getSentMail();
+      if (response.error) {
+        throw new Error(response?.exception?.response?.data?.message);
+      } else {
+        const sentMails = response?.data?.sentMails;
+        if (!sentMails) {
+          throw new Error("Something went wrong");
+        }
+        dispatch(mailActions.getSentMail({ sentMails }));
+      }
+    } catch (err) {
+      dispatch(
+        alertActions.setAlert({
+          content: err && err.message ? err.message : "Something went wrong",
+        })
+      );
+    }
+  };
+};
+
 export const updateIsReadAction = (id) => {
   return async (dispatch) => {
     try {

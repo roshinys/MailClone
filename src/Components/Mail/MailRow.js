@@ -16,7 +16,7 @@ function MailRow({ id, isRead, title, description, time, isReceived }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const mailClickHandler = () => {
-    navigate(`/mail/${id}`);
+    navigate(`/mail/${id}?inbox=${isReceived}`);
   };
 
   const delClickHandler = () => {
@@ -27,7 +27,9 @@ function MailRow({ id, isRead, title, description, time, isReceived }) {
     <div className="mailRow">
       <div className="mailRow_optionTitle">
         <div className="mailRow__options">
-          {!isRead && <FiberManualRecord className="mailRow__readProperty" />}
+          {isReceived && !isRead && (
+            <FiberManualRecord className="mailRow__readProperty" />
+          )}
           <Checkbox />
           <IconButton>
             <StarBorderOutlined />
@@ -47,8 +49,8 @@ function MailRow({ id, isRead, title, description, time, isReceived }) {
       </div>
       <p className="mailRow__time">
         {time}
-        <IconButton>
-          <Delete onClick={delClickHandler} />
+        <IconButton onClick={delClickHandler}>
+          <Delete />
         </IconButton>
       </p>
     </div>

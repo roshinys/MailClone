@@ -13,7 +13,8 @@ import MailList from "./Components/Mail/MailList";
 import SendMail from "./Components/Mail/SendMail";
 import InboxMail from "./Components/Mail/InboxMail";
 import { useDispatch, useSelector } from "react-redux";
-import { getInboxMailAction } from "./store/mail-action";
+import { getInboxMailAction, getsentMailAction } from "./store/mail-action";
+import SentMail from "./Components/Mail/SentMail";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,14 @@ const router = createBrowserRouter([
         element: (
           <MailList>
             <InboxMail />
+          </MailList>
+        ),
+      },
+      {
+        path: "/mail/sent",
+        element: (
+          <MailList>
+            <SentMail />
           </MailList>
         ),
       },
@@ -54,6 +63,7 @@ function App() {
   useEffect(() => {
     if (token) {
       dispatch(getInboxMailAction());
+      dispatch(getsentMailAction());
     }
   }, [dispatch, token]);
 

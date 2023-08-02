@@ -27,6 +27,9 @@ const mailSlice = createSlice({
         0
       );
     },
+    getSentMail: (state, action) => {
+      state.sentMails = action.payload.sentMails;
+    },
     updateIsRead: (state, action) => {
       const mailId = action.payload.id;
       state.inboxMails = state.inboxMails.map((mail) => {
