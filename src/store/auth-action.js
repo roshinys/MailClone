@@ -1,15 +1,18 @@
-import * as api from "../api.js";
+import useHttp from "../hooks/use-http.js";
 import { alertActions } from "./alert-slice";
 import { authActions } from "./auth-slice";
 
 export const registerUser = (user, navigate) => {
   return async (dispatch) => {
     try {
-      const response = await api.register(user);
-      console.log(user);
-      console.log(response);
-      if (response.error) {
-        throw new Error(response?.exception?.response?.data?.message);
+      const sendRequest = useHttp({
+        url: `http://localhost:8000/api/auth/register`,
+        method: "POST",
+        body: user,
+      });
+      const response = await sendRequest();
+      if (!response.data.success) {
+        throw new Error(response?.data?.message);
       } else {
         const { user, token } = response.data;
         const userDetails = {
@@ -33,9 +36,14 @@ export const registerUser = (user, navigate) => {
 export const loginUser = (user, navigate) => {
   return async (dispatch) => {
     try {
-      const response = await api.login(user);
-      if (response.error) {
-        throw new Error(response?.exception?.response?.data?.message);
+      const sendRequest = useHttp({
+        url: `http://localhost:8000/api/auth/login`,
+        method: "POST",
+        body: user,
+      });
+      const response = await sendRequest();
+      if (!response.data.success) {
+        throw new Error(response?.data?.message);
       } else {
         const { user, token } = response.data;
         const userDetails = {

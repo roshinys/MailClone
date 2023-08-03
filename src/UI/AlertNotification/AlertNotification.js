@@ -18,7 +18,7 @@ function AlertNofication() {
       anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       open={showAlertMessage}
       onClose={closeAlertHandler}
-      autoHideDuration={6000}
+      autoHideDuration={1000}
     >
       <Alert severity="info">{alertMessageContent}</Alert>
     </Snackbar>
